@@ -1,0 +1,202 @@
+﻿<html>
+<head>
+    <meta charset="utf-8" />
+    <title>JSON EXAMPLE</title>
+
+    <script>
+        var x = 5;
+        var yazi = "herhangi bir yazi";
+        var dizi = [1, 2, 3, 4];
+        var araba1 = {
+            name: "opel",
+            model: "vectra",
+            agirlik: 1200,
+            yil: 2000,
+            renk: "mavi",
+            suan_hiz: 0,
+            km_saat:0,
+                       
+            fren_mesafesi: function () {
+                return (this.suan_hiz / this.agirlik) * 100;
+            },
+            calisma_durumu: false,
+            tam_ad: function () {
+
+                return this.name + " " + this.model;
+            }
+        };
+        var araba2 = {
+            name: "bmw",
+            model: "3.20",
+            agirlik: 1300,
+            yil: 2007,
+            renk: "kırmızı",
+            suan_hiz: 0,
+            km_saat: 0,
+
+            fren_mesafesi: function () {
+                return (this.suan_hiz / this.agirlik) * 100;
+            },
+            calisma_durumu: false,
+            tam_ad: function () {
+
+                return this.name + " " + this.model;
+            }
+        };
+        var otopark = [
+            {
+                name: "bmw",
+                model: "3.20",
+                agirlik: 1300,
+                yil: 2007,
+                renk: "kırmızı",
+                suan_hiz: 0,
+                km_saat: 0,
+
+                fren_mesafesi: function () {
+                    return (this.suan_hiz / this.agirlik) * 100;
+                },
+                calisma_durumu: false,
+                tam_ad: function () {
+
+                    return this.name + " " + this.model;
+                }
+            },
+            {
+                name: "opel",
+                model: "vectra",
+                agirlik: 1200,
+                yil: 2000,
+                renk: "mavi",
+                suan_hiz: 0,
+                km_saat: 0,
+
+                fren_mesafesi: function () {
+                    return (this.suan_hiz / this.agirlik) * 100;
+                },
+                calisma_durumu: false,
+                tam_ad: function () {
+
+                    return this.name + " " + this.model;
+                }
+            }
+
+            
+        ];
+       // otopark.push();
+
+
+
+        function start(a) {
+            if(a.calisma_durumu == true) {
+                console.log(a.tam_ad() + "zaten çalışıyor ");
+            }else{
+                console.log(a.tam_ad() + " " + "çalıştı! ");
+                a.calisma_durumu = true;
+            }                                            
+                
+
+
+        };
+
+        function hizlandir(y) {
+            if (y.calisma_durumu == false) {
+                console.log(y.tam_ad() +" "+ "motor şuan çalışmıyor");
+
+            } else {
+                var x = parseInt(document.getElementById("hiz").value);
+                y.suan_hiz += x;
+                console.log(y.tam_ad() + " " + x + "km/h kadar hızlandı!");
+            }
+                      
+
+        };
+
+        function fren(a) {
+
+            if (a.calisma_durumu == false || a.suan_hiz==0) {
+                console.log(a.tam_ad()+" "+"hareket etmiyor zaten")
+            }
+            else { 
+
+            var x = parseInt( document.getElementById("obje_m").value);
+
+            console.log(a.tam_ad() +" "+"fren yaptı!");
+            if (x > a.fren_mesafesi()) {
+
+                console.log(a.tam_ad() +" "+"güvenli şekilde durabildi!");
+                a.suan_hiz = 0;
+
+            } else {
+                console.log("geçmiş olsun!");
+                a.suan_hiz = 0;
+
+                }
+            }
+
+        };
+
+
+        function stop(a) {
+            if (a.calisma_durumu == false) {
+                console.log(a.tam_ad() +" "+ "Zaten duruyor");
+
+            } else { 
+            console.log(a.tam_ad() +" "+"durduruldu!");
+                a.calisma_durumu = false;
+                a.suan_hiz = 0;
+            }
+
+        };
+
+        function bilgial(a) {
+            console.log(a);
+
+        };   
+
+        function git(a) {
+            if (a.calisma_durumu == false || a.suan_hiz== 0) {
+                console.log(a.tam_ad() + "duruyor,gidemez");
+            }else {
+                var saat = parseInt(document.getElementById('git_saat').value);
+                var yol = a.suan_hiz * saat;
+                console.log(a.tam_ad() + " " + saat + "saatte" + yol + "kadar yol yaptı!");
+
+                a.km_saat += yol;
+            }
+           
+
+        };
+
+       
+
+    </script>
+
+
+
+</head>
+<body>
+    <button type="button" onclick="start(araba)">Çalıştır</button><br />
+
+    <span>Hız:</span><br />
+    <input type="number" id="hiz" />
+    <button type="button" onclick="hizlandir(araba)">Hızlandır </button><br />
+
+    <span>Obje mesafesi:</span><br />
+    <input type="number" id="obje_m" />
+    <button type="button" onclick="fren(araba)">Fren yap</button><br />
+
+    <button type="button" onclick="stop(araba)">Motoru durdur</button><br />
+
+    <span>Saat:</span>
+
+    <input type="number" id="git_saat" />
+    <button type="button" onclick="git(araba)">Git</button>
+ 
+    <br />
+    <button type="button" onclick="bilgial(araba)">Bilgi Al</button><br />
+
+
+
+</body>
+</html>
